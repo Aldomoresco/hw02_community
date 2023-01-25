@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %} 
+{% for post in posts %}
+<ul>
+  <li>
+    Автор: {{ post.author.get_full_name }}
+  </li>
+  <li>
+    Дата публикации: {{ post.pub_date|date:"d E Y" }}
+  </li>
+</ul>
+<p>{{ post.text }}</p>    
+{% if post.group %}   
+  <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
+{% endif %} 
+{% if not forloop.last %}<hr>{% endif %}
+{% endfor %}    
+    {% endblock %}
+    <!-- Использованы классы бустрапа: -->
+    <!-- border-top: создаёт тонкую линию сверху блока -->
+    <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
+    <!-- py-3: контент внутри размещается с отступом сверху и снизу -->         
+    <footer class="border-top text-center py-3">
+      <!-- тег span используется для добавления нужных стилей отдельным участкам текста --> 
+      <p>© 2020 Copyright <span style="color:red">Ya</span>tube</p>    
+    </footer>
+  </body>
+</html>
