@@ -6,7 +6,6 @@ User = get_user_model()
 
 class Post(models.Model):
     def __str__(self):
-        # выводим текст поста
         return self.text
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
