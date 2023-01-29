@@ -22,8 +22,11 @@ class Post(models.Model):
         related_name='posts'
     )
     group = models.ForeignKey(Group, blank=True,
-                              null=True, on_delete=models.CASCADE)
+                              related_name='posts',
+                              null=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        ordering = ['-pub_date']
 
     def __str__(self):
-        # выводим текст поста
         return self.text
