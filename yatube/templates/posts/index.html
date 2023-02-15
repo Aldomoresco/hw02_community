@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 {% block content %} 
-{% for post in posts %}
+{% for post in page_obj %}
 {% include 'includes/card_post.html' %} 
 {% if post.group %}   
   <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
 {% endif %} 
 {% if not forloop.last %}<hr>{% endif %}
-{% endfor %}    
-    {% endblock %}
-    <!-- Использованы классы бустрапа: -->
-    <!-- border-top: создаёт тонкую линию сверху блока -->
-    <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
-    <!-- py-3: контент внутри размещается с отступом сверху и снизу -->         
-    {% include 'includes/foolter.html' %}  
-  </body>
-</html>
+{% endfor %}
+{% include 'includes/paginator.html' %}
+{% endblock %}       
+{% include 'includes/foolter.html' %}  
